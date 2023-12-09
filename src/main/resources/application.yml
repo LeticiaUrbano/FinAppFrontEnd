@@ -1,0 +1,15 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+myapp:
+  randomSequenceLength: 6
+
+server:
+  port: 8081
+  
+management:
+ server:
+  port: 8082
