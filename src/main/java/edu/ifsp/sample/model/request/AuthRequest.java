@@ -1,4 +1,4 @@
-package edu.ifsp.model.request;
+package edu.ifsp.sample.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

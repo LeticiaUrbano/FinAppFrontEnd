@@ -17,8 +17,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.ifsp.model.request.AuthRequest;
-import edu.ifsp.model.response.UserResponse;
+import edu.ifsp.sample.model.request.AuthRequest;
+import edu.ifsp.sample.model.request.UserRequest;
+import edu.ifsp.sample.model.response.UserResponse;
 
 @Service
 public class APIService {
@@ -36,7 +37,6 @@ public class APIService {
 	public List<UserResponse.UserItem> getUsers() throws JsonMappingException, JsonProcessingException {
 		String url = "http://localhost:5001/finApp/v1/users";
 		String bearerToken = getToken();
-		createNewUser();
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.set("Authorization", "Bearer " + bearerToken);
 
@@ -53,28 +53,38 @@ public class APIService {
 	    return userResponse.getData().getItens();
 	}
 	
-	public void createNewUser() {
-        String url = "http://localhost:5001/finApp/v1/users/create";
+	public void createNewUser(UserRequest userRequest) {
+	    String url = "http://localhost:5001/finApp/v1/users/create";
 
-        // Criar o JSON do usuário
-        String jsonUser = "{ \"nome\": \"teste\", \"sobrenome\": \"teste\", \"email\": \"teste123@teste.com\", \"senha\": \"teste\" }";
+	    // Converte o objeto UserRequest para JSON
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    String jsonUser;
 
-        // Configurar os headers
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+	    try {
+	        jsonUser = objectMapper.writeValueAsString(userRequest);
+	    } catch (JsonProcessingException e) {
+	        // Lida com a exceção de serialização para JSON
+	        e.printStackTrace();
+	        return;
+	    }
 
-        // Criar a entidade HTTP com o JSON e os headers
-        HttpEntity<String> requestEntity = new HttpEntity<>(jsonUser, headers);
+	    // Configura os headers
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Fazer a requisição POST
-        ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, requestEntity, String.class);
+	    // Cria a entidade HTTP com o JSON e os headers
+	    HttpEntity<String> requestEntity = new HttpEntity<>(jsonUser, headers);
 
-        // Obter a resposta do servidor
-        String responseBody = responseEntity.getBody();
+	    // Faz a requisição POST
+	    ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, requestEntity, String.class);
 
-        // Tratar a resposta conforme necessário
-        System.out.println("API Response: " + responseBody);
-    }
+	    // Obtém a resposta do servidor
+	    String responseBody = responseEntity.getBody();
+
+	    // Trata a resposta conforme necessário
+	    System.out.println("API Response: " + responseBody);
+	}
+
 	
 	
 	public String getToken() throws JsonMappingException, JsonProcessingException {

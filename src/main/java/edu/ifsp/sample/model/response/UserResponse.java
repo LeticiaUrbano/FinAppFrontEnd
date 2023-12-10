@@ -1,4 +1,4 @@
-package edu.ifsp.model.response;
+package edu.ifsp.sample.model.response;
 
 import java.util.List;
 

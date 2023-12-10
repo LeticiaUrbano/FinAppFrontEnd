@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.ifsp.model.response.UserResponse;
+import edu.ifsp.sample.model.response.UserResponse;
 
 @Controller
 public class InjectionController {
