@@ -32,29 +32,7 @@ public class InjectionController {
         jsp.addAttribute("recicla", message);
         return "injection";
     }
-    @GetMapping("/data")
-    public String getData(Model model) {
-        try {
-            List<UserResponse.UserItem> users = authService.getUsers();
-            
-            // Adiciona a lista de usuários como um atributo do modelo
-            model.addAttribute("users", users);
-
-            for (UserResponse.UserItem user : users) {
-                System.out.println("Nome: " + user.getNomeCompleto());
-                System.out.println("Email: " + user.getEmail());
-                System.out.println("ID Externo: " + user.getIdExterno());
-                // Adicione outras propriedades conforme necessário
-                System.out.println("------------------------");
-            }
-            
-            return "index"; // Retorna o nome da visão (index.jsp)
-        } catch (Exception e) {
-            // Tratar exceções, se necessário
-            e.printStackTrace();
-            return "error"; // Retorna uma visão de erro
-        }
-    }
+    
 }
 
 

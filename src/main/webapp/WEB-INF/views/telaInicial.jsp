@@ -1,5 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+    // Obtenha o token da sessão
+    String jwtToken = (String) session.getAttribute("jwtToken");
+
+    // Verifique se o token está presente
+    if (jwtToken == null || jwtToken.isEmpty()) {
+%>
+        <script>
+            // Exiba um pop-up informando ao usuário que a sessão foi encerrada
+            alert("Sua sessão foi encerrada. Faça login novamente.");
+            // Redirecione para a página de login
+            window.location.href = "login";
+        </script>
+<%
+    }
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
