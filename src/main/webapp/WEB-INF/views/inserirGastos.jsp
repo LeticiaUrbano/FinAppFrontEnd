@@ -1,135 +1,141 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>ControlaAi</title>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlaAi</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
 
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 10px; /* Added border-radius for round corners */
+        }
+
+        .radio-group {
+            margin-top: 10px;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+        }
+
+        .login-button button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .login-button button:hover {
+            background-color: #45a049;
+        }
+
+        .view-expenses button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .view-expenses button:hover {
+            background-color: #0077A6;
+        }
+    </style>
 </head>
 <body>
 
-<div class=e8_379>
-  <div class=e8_380>
-    <div class=e8_382>
-      <div class="ei8_382_501_22"></div>
-      <div class="ei8_382_501_399"></div>
+<div class="container">
+    <div class="form-header">
+        <h1>Inserir Gastos</h1>
     </div>
-    <div class=e11_525>
-      <div class="e8_381"></div>
-      <div class="e8_384"></div>
-      <div class="e8_385"></div>
-    </div>
-  </div>
-  <div class=e8_386>
-    <div class="e8_388"></div><span  class="e8_389">Hora de inserir seus gastos:</span><span  class="e8_390">Faça o cadastro dos seus gastos e defina um tipo de gasto para cada compra.
-</span>
-    <div class=e8_391>
-      <div class=e8_392><span  class="e8_393">Novo Gasto + </span></div>
-      <div class="e8_394"></div>
-      <div class="e8_395"></div><span  class="e8_396">Item:</span><span  class="e8_397">Valor:</span><span  class="e8_398">Tipo de gasto:</span>
-      <div class=e8_399>
-        <div class="e8_400"></div>
-        <div class="e8_402"></div>
-        <div class="e8_457"></div>
-        <div class="e8_458"></div>
-        <div class="e8_459"></div><span  class="e8_463">Alimentação</span><span  class="e8_464">Saúde</span><span  class="e8_465">Transporte</span><span  class="e8_466">Educação</span>
-      </div><span  class="e8_461">Moradia</span>
-    </div>
-    <div class=e11_526><span  class="e8_469">Cadastrar Gastos</span></div>
-    <div class="e8_470"></div>
-  </div>
-  <div class=e16_563>
-  <div class=e16_564>
-    <div class=e16_565>
-      <div class="ei16_565_501_22"></div>
-      <div class="ei16_565_501_399"></div>
-    </div>
-    <div class=e16_566>
-      <div class="ei16_566_8_381"></div>
-      <div class="ei16_566_8_384"></div>
-      <div class="ei16_566_8_385"></div>
-    </div>
-  </div>
-  <div class=e16_567>
-    <div class="e16_568"></div><span  class="e16_569">Gasto Inserido com sucesso!</span><span  class="e16_570">Adicione novo gasto, edite ou exclua.
-</span>
-    <div class=e16_571>
-      <div class=e16_572><span  class="e16_573">Novo Gasto + </span></div>
-      <div class=e16_614><span  class="e16_604">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-        <div class=e16_609>
-          <div class="e16_610"></div>
+
+    <form id="insereForm" action="/cadastrarGastos" method="POST">
+        <div class="input-group">
+            <div class="input-box">
+                <label for="item">Item:</label>
+                <input id="item" type="text" name="item" placeholder="Informe o item" required>
+            </div>
         </div>
-        <div class=e16_605>
-          <div class=e16_606>
-            <div class="e16_607"></div>
-            <div class="e16_608"></div>
-          </div>
-        </div>
+
+        <div class="input-box">
+          <label for="valor">Valor:</label>
+          <input id="valor" type="text" name="valor" placeholder="Informe o valor" required>
       </div>
-      <div class=e16_679><span  class="e16_680">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-        <div class=e16_681>
-          <div class="e16_682"></div>
-        </div>
-        <div class=e16_683>
-          <div class=e16_684>
-            <div class="e16_685"></div>
-            <div class="e16_686"></div>
+
+      <div class="input-box">
+          <label>Categoria:</label>
+          <div class="radio-group">
+              <input type="radio" id="alimentacao" name="categoria" value="alimentacao" required>
+              <label for="alimentacao">AlimentaÃ§Ã£o</label>
+
+              <input type="radio" id="saude" name="categoria" value="saude" required>
+              <label for="saude">SaÃºde</label>
+
+              <input type="radio" id="transporte" name="categoria" value="transporte" required>
+              <label for="transporte">Transporte</label>
+
+              <input type="radio" id="educacao" name="categoria" value="educacao" required>
+              <label for="educacao">EducaÃ§Ã£o</label>
+
+              <input type="radio" id="moradia" name="categoria" value="moradia" required>
+              <label for="moradia">Moradia</label>
           </div>
-        </div>
-        <div class=e16_687><span  class="e16_688">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-          <div class=e16_689>
-            <div class="e16_690"></div>
-          </div>
-          <div class=e16_691>
-            <div class=e16_692>
-              <div class="e16_693"></div>
-              <div class="e16_694"></div>
-            </div>
-          </div>
-          <div class=e16_695><span  class="e16_696">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-            <div class=e16_697>
-              <div class="e16_698"></div>
-            </div>
-            <div class=e16_699>
-              <div class=e16_700>
-                <div class="e16_701"></div>
-                <div class="e16_702"></div>
-              </div>
-            </div>
-            <div class=e16_703><span  class="e16_704">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-              <div class=e16_705>
-                <div class="e16_706"></div>
-              </div>
-              <div class=e16_707>
-                <div class=e16_708>
-                  <div class="e16_709"></div>
-                  <div class="e16_710"></div>
-                </div>
-              </div>
-              <div class=e16_711><span  class="e16_712">Item: Pizza - Valor: R$130,00 - Tipo de Gasto: Alimentação</span>
-                <div class=e16_713>
-                  <div class="e16_714"></div>
-                </div>
-                <div class=e16_715>
-                  <div class=e16_716>
-                    <div class="e16_717"></div>
-                    <div class="e16_718"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+
+        <div class="login-button">
+            <button type="button" onclick="submitForm()">Cadastrar</button>
+        </div>
+    </form>
+
+    <div class="view-expenses">
+        <button>
+            <a href="gerenciarGastos">Visualizar Gastos</a>
+        </button>
     </div>
-    <div class=e16_590><span  class="ei16_590_8_469"><button><a href="mostraGastos">Visualizar Gastos</a> </button></span></div>
-    <div class="e16_591"></div>
-  </div>
-</div>
 </div>
 
 </body>
