@@ -11,15 +11,9 @@ public class IndexController {
         return "index";
     }
     
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+    
 
-    @GetMapping("/cadastro")
-    public String cadastro() {
-        return "cadastro";
-    } 
+    
     
     @GetMapping("/telaInicial")
     public String telaInicial() {
