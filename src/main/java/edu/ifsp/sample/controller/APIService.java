@@ -34,24 +34,24 @@ public class APIService {
 		return responseBody;
 	}
 	
-	public List<UserResponse.UserItem> getUsers() throws JsonMappingException, JsonProcessingException {
-		String url = "http://localhost:5001/finApp/v1/users";
-		String bearerToken = getToken();
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.set("Authorization", "Bearer " + bearerToken);
-
-	    HttpEntity<String> requestEntity = new HttpEntity<>(headers);
-
-	    ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
-	    String responseBody = responseEntity.getBody();
-
-	    // Deserializar a resposta em um objeto Java
-	    ObjectMapper objectMapper = new ObjectMapper();
-	    UserResponse userResponse = objectMapper.readValue(responseBody, UserResponse.class);
-
-	    // Retornar a lista de itens
-	    return userResponse.getData().getItens();
-	}
+//	public List<UserResponse.UserItem> getUsers() throws JsonMappingException, JsonProcessingException {
+//		String url = "http://localhost:5001/finApp/v1/users";
+//		String bearerToken = getToken();
+//	    HttpHeaders headers = new HttpHeaders();
+//	    headers.set("Authorization", "Bearer " + bearerToken);
+//
+//	    HttpEntity<String> requestEntity = new HttpEntity<>(headers);
+//
+//	    ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+//	    String responseBody = responseEntity.getBody();
+//
+//	    // Deserializar a resposta em um objeto Java
+//	    ObjectMapper objectMapper = new ObjectMapper();
+//	    UserResponse userResponse = objectMapper.readValue(responseBody, UserResponse.class);
+//
+//	    // Retornar a lista de itens
+//	    return userResponse.getData().getItens();
+//	}
 	
 	public void createNewUser(UserRequest userRequest) {
 	    String url = "http://localhost:5001/finApp/v1/users/create";
@@ -87,28 +87,38 @@ public class APIService {
 
 	
 	
-	public String getToken() throws JsonMappingException, JsonProcessingException {
-        String url = "http://localhost:5001/finApp/v1/authentication";
+	public String getToken(UserRequest userRequest) {
+	    String url = "http://localhost:5001/finApp/v1/authentication";
 
-        AuthRequest requestBodyObject = new AuthRequest("admin@dsw.net", "admin@dsw");
+	    AuthRequest requestBodyObject = new AuthRequest(userRequest.getEmail(), userRequest.getSenha());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<AuthRequest> requestEntity = new HttpEntity<>(requestBodyObject, headers);
+	    HttpEntity<AuthRequest> requestEntity = new HttpEntity<>(requestBodyObject, headers);
 
-        // Fazer a requisição POST
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
-        String responseBody = responseEntity.getBody();
+	    // Fazer a requisição POST
+	    ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
+	    String responseBody = responseEntity.getBody();
+	    
+	    ObjectMapper objectMapper = new ObjectMapper();
+	    JsonNode jsonNode;
+	    try {
+	    	
+		    jsonNode = objectMapper.readTree(responseBody);
+	    }catch (JsonProcessingException e) {
+	    	e.printStackTrace();
+	        return null;
+		}
+	    
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode = objectMapper.readTree(responseBody);
+	    // Verificar se o objeto JWT contém o token
+	    JsonNode jwtNode = jsonNode.path("jwt");
+	    String jwtToken = (jwtNode.isMissingNode() || jwtNode.isNull()) ? null : jwtNode.asText();
 
-        // Extrair o token JWT
-        String jwtToken = jsonNode.path("jwt").asText();
+	    return jwtToken;
+	}
 
-        return jwtToken;
-    }
 
 	@Bean
 	public RestTemplate restTemplate() {
