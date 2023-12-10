@@ -1,7 +1,5 @@
 package edu.ifsp.sample.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
@@ -13,13 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.ifsp.sample.model.request.AuthRequest;
 import edu.ifsp.sample.model.request.UserRequest;
-import edu.ifsp.sample.model.response.UserResponse;
 
 @Service
 public class APIService {
@@ -34,6 +30,7 @@ public class APIService {
 		return responseBody;
 	}
 	
+
 //	public List<UserResponse.UserItem> getUsers() throws JsonMappingException, JsonProcessingException {
 //		String url = "http://localhost:5001/finApp/v1/users";
 //		String bearerToken = getToken();
@@ -55,11 +52,11 @@ public class APIService {
 	
 	public void createNewUser(UserRequest userRequest) {
 	    String url = "http://localhost:5001/finApp/v1/users/create";
-
+	
 	    // Converte o objeto UserRequest para JSON
 	    ObjectMapper objectMapper = new ObjectMapper();
 	    String jsonUser;
-
+	
 	    try {
 	        jsonUser = objectMapper.writeValueAsString(userRequest);
 	    } catch (JsonProcessingException e) {
@@ -67,23 +64,26 @@ public class APIService {
 	        e.printStackTrace();
 	        return;
 	    }
-
+	
 	    // Configura os headers
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_JSON);
-
+	
 	    // Cria a entidade HTTP com o JSON e os headers
 	    HttpEntity<String> requestEntity = new HttpEntity<>(jsonUser, headers);
-
+	
 	    // Faz a requisição POST
 	    ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, requestEntity, String.class);
-
+	
 	    // Obtém a resposta do servidor
 	    String responseBody = responseEntity.getBody();
-
+	
 	    // Trata a resposta conforme necessário
 	    System.out.println("API Response: " + responseBody);
 	}
+
+	    // Configura os headers
+
 
 	
 	

@@ -30,5 +30,8 @@ public class IndexController {
         return "mostraGastos";
     }
     
-    
+    @GetMapping("/gerenciarGastos")
+    public String gerenciarGastos() {
+        return "gerenciarGastos";
+    }
 }

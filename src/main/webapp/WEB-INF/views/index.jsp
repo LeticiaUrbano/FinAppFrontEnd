@@ -1,18 +1,15 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="ISO-8859-1">
+        <title>ControlaAi</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     </head>
 
     <body>
-	<h1>inicio</h1>
-	
 	<div class=e1_42>
   <div class=e1_43>
     <div class=e1_46><span  class="e1_47">Inicio</span><span  class="e1_48">Sobre</span><span  class="e1_49">Contato</span></div>
@@ -48,4 +45,6 @@
       <!--JavaScript at end of body for optimized loading-->
       <script type="text/javascript" src="js/materialize.min.js"></script>
     </body>
-  </html>
+    
+    
+</html>    
