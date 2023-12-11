@@ -6,9 +6,12 @@ public class ExpenseRequest {
 
     private double expensePrice;
     
-    public ExpenseRequest(String expenseName, double expensePrice) {
+    private String expenseType;
+    
+    public ExpenseRequest(String expenseName, double expensePrice, String expenseType) {
         this.expenseName = expenseName;
         this.expensePrice = expensePrice;
+        this.expenseType = expenseType;
     }
 
 	public String getExpenseName() {
@@ -26,4 +29,14 @@ public class ExpenseRequest {
 	public void setExpensePrice(double expensePrice) {
 		this.expensePrice = expensePrice;
 	}
+
+	public String getExpenseType() {
+		return expenseType;
+	}
+
+	public void setExpenseType(String expenseType) {
+		this.expenseType = expenseType;
+	}
+	
+	
 }

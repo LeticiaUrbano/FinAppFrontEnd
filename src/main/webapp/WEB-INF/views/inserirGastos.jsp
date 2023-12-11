@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <%
 //Obtenha o token da sessï¿½o
 String jwtToken = (String) session.getAttribute("jwtToken");
@@ -10,7 +9,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 %>
 <script>
 	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
-	alert("Sua sessão foi encerrada. Faça login novamente.");
+	alert("Sua sessï¿½o foi encerrada. Faï¿½a login novamente.");
 	//Redirecione para a pagina de login
 	window.location.href = "login";
 </script>
@@ -42,7 +41,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="telaInicial"><img
+			<a class="navbar-brand" href="#"><img
 				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
 				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
 			<button class="navbar-toggler" type="button"
@@ -59,7 +58,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 					</li>
 					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
 					</li>
-					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatï¿½rio</a>
 					</li>
 					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
@@ -69,28 +68,25 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 	</nav>
 
 	<section class="container tela d-flex flex-column pt-3 align-items-center">
-		<form id="insereForm" action="/enviarGastos" method="POST"
-			class="w-50">
+		<form id="insereForm" action="javascript:void(0)" method="POST" class="w-50">
 			<h2 class="text-center mb-4 fs-1">Adicionar gastos</h2>
 			<div class="mb-3">
-				<label for="item" class="form-label">Item</label> <input id="item"
-					type="text" name="item" class="form-control"
-					placeholder="Informe o item" required>
+				<label for="item" class="form-label">Item</label> 
+				<input id="item" type="text" name="item" class="form-control" placeholder="Informe o item" required>
 			</div>
 			<div class="mb-3">
-				<label for="valor" class="form-label">Valor</label> <input
-					id="valor" type="text" name="valor" class="form-control"
-					placeholder="Informe o item" required>
+				<label for="valor" class="form-label">Valor</label> 
+				<input id="valor" type="text" name="valor" class="form-control" placeholder="Informe o item" required>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="alimentacao"
 					name="categoria" value="alimentacao" required /> <label
-					class="form-check-label" for="alimentacao"> Alimentação </label>
+					class="form-check-label" for="alimentacao"> Alimentacao </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="saude"
 					name="categoria" value="saude" required /> <label
-					class="form-check-label" for="saude"> Saúde </label>
+					class="form-check-label" for="saude"> Saude </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="transporte"
@@ -100,7 +96,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="educacao"
 					name="categoria" value="educacao" required /> <label
-					class="form-check-label" for="educacao"> Educação </label>
+					class="form-check-label" for="educacao"> Educacao </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="moradia"
@@ -123,36 +119,34 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 	</section>
 
 	<footer class="w-100 text-center p-3 bg-primary mx-0">
-		<p class="textopreto">Gabriel | Letícia | Matheus</p>
+		<p class="textopreto">Gabriel | Leticia | Matheus</p>
 	</footer>
-
 	<script>
 		function submitForm() {
-			var form = $('#insereForm');
-			var formData = form.serializeArray();
-			var jsonData = {};
-
-			$.each(formData, function(_, record) {
-				jsonData[record.name] = record.value;
+			// Crie um objeto FormData com os valores do formulÃ¡rio
+			var formData = new FormData(document.getElementById('insereForm'));
+	
+			// Converta o objeto FormData para um objeto JSON com nomes especÃ­ficos
+			var jsonData = {
+				expenseName: formData.get('item'),
+				expensePrice: parseFloat(formData.get('valor')),
+				expenseType: formData.get('categoria')
+			};
+	
+			// Realize a chamada para o endpoint de envio de gastos
+			$.ajax({
+				url: 'enviarGasto',
+				type: 'POST',
+				data: JSON.stringify(jsonData),
+				contentType: 'application/json',
+				success: function() {
+					// FaÃ§a algo com a resposta, se necessÃ¡rio
+					window.location.href = 'http://localhost:8081/inserirGastos';
+				},
+				error: function() {
+					//alert('Erro ao cadastrar o gasto.');
+				}
 			});
-
-			$
-					.ajax({
-						type : 'POST',
-						url : form.attr('action'),
-						contentType : 'application/json',
-						data : JSON.stringify(jsonData),
-						success : function() {
-							// Mostrar mensagem de sucesso
-							alert('Cadastro concluï¿½do com sucesso! Clique em OK para continuar.');
-
-							// Redirecionar para a pï¿½gina de login apï¿½s o clique em OK
-							//window.location.href = 'http://localhost:8081/login';
-						},
-						error : function() {
-							// Lï¿½gica de tratamento de erro, se necessï¿½rio...
-						}
-					});
 		}
 	</script>
 	<script>
@@ -161,6 +155,5 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 			window.location.href = "";
 		}
 	</script>
-
 </body>
 </html>

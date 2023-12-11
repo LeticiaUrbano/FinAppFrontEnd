@@ -66,13 +66,13 @@
 	            data: JSON.stringify(jsonData),
 	            success: function () {
 	                // Mostrar mensagem de sucesso
-	                alert('Cadastro concluído com sucesso! Clique em OK para continuar.');
+	                //alert('Cadastro concluï¿½do com sucesso! Clique em OK para continuar.');
 	
-	                // Redirecionar para a página de login após o clique em OK
+	                // Redirecionar para a pï¿½gina de login apï¿½s o clique em OK
 	                window.location.href = 'http://localhost:8081/login';
 	            },
 	            error: function () {
-	                // Lógica de tratamento de erro, se necessário...
+	                // Lï¿½gica de tratamento de erro, se necessï¿½rio...
 	            }
 	        });
 	    }
