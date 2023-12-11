@@ -8,10 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ifsp.sample.model.request.ExpensePutRequest;
 import edu.ifsp.sample.model.request.ExpenseRequest;
 import edu.ifsp.sample.model.response.ExpenseResponse;
 
@@ -28,15 +32,14 @@ public class ExpenseController {
     
     @PostMapping("/enviarGasto")
     public String CadastrarGasto(@RequestBody ExpenseRequest expenseRequest, HttpSession session) {
-    	String attribute = session.getAttribute("jwtToken").toString();
-    	String checkToken = apiService.checkToken(attribute);
+    	String token = session.getAttribute("jwtToken").toString();
+    	String userEmail = session.getAttribute("userEmail").toString();
+    	String checkToken = apiService.checkToken(token);
     	if(checkToken.equals("Token válido")) {
-    		apiService.createNewExpense(expenseRequest);
+    		apiService.vincularGastoComUser(expenseRequest, token, userEmail);
     	} else {
     		return "login";
     	}
-    		
-    	
         return "inserirGastos";
     }  
     
@@ -44,12 +47,25 @@ public class ExpenseController {
     public String mostraGastos() {
         return "mostraGastos";
     }
-    
+
     @GetMapping("/gerenciarGastos")
     public String gerenciarGastos(Model model, HttpSession session) {
     	List<ExpenseResponse> expenses = apiService.getExpenses(session.getAttribute("userCode").toString(), session.getAttribute("jwtToken").toString());
     	model.addAttribute("expenses", expenses);
         return "gerenciarGastos";
+    }
+    
+    @DeleteMapping("/deleteGasto")
+    public void deleteGasto(@RequestParam String expenseCode, Model model, HttpSession session) {
+        String token = session.getAttribute("jwtToken").toString();
+        apiService.checkToken(token);
+        apiService.deleteGasto(expenseCode, token);
+    }
+    @PutMapping("/atualizarGasto")
+    public void atualizarGasto(@RequestBody ExpensePutRequest expensePutRequest, HttpSession session) {
+        String token = session.getAttribute("jwtToken").toString();
+        apiService.checkToken(token);
+        apiService.atualizarGasto(expensePutRequest, token);
     }
     
     
@@ -78,5 +94,4 @@ public class ExpenseController {
     	model.addAttribute("expenses", expenses);
         return "gerenciarGastos";
     }
-	
 }

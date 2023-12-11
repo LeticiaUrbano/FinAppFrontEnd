@@ -11,7 +11,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 %>
 <script>
 	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
-	alert("Sua sess�o foi encerrada. Fa�a login novamente.");
+	alert("Sua sess�o foi encerrada. Fa�a login novamente.");
 	//Redirecione para a pagina de login
 	window.location.href = "login";
 </script>
@@ -61,7 +61,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 					</li>
 					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
 					</li>
-					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relat�rio</a>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relat�rio</a>
 					</li>
 					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
@@ -72,37 +72,150 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 
 	<section class="container w-50 tela">
 		<c:forEach var="expense" items="${expenses}">
-			<div class="card my-4">
-				<div
-					class="card-body d-flex justify-content-between align-items-center">
-					<div>
-						<p class="textopreto">C�digo: ${expense.code}</p>
-						<p class="textopreto">Item: ${expense.expenseName} - Valor:
-							${expense.expensePrice} - Tipo de Gasto: ${expense.expenseName}</p>
-					</div>
-					<div class="">
-						<i class="bi bi-pencil textopreto fs-3 mx-1"></i> <i
-							class="bi bi-trash text-danger fs-3 mx-1"></i>
-					</div>
-				</div>
-			</div>
-		</c:forEach>
+  <div class="card my-4">
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <div>
+        <p class="textopreto">Id: ${expense.code}</p>
+        <p class="textopreto">Item: <span id="item-${expense.code}">${expense.expenseName}</span><input id="edit-item-${expense.code}" type="text" style="display: none;"></p>
+        <p class="textopreto">Valor: <span id="valor-${expense.code}">${expense.expensePrice}</span><input id="edit-valor-${expense.code}" type="text" style="display: none;"></p>
+        <p class="textopreto">Tipo de Gasto: <span id="tipo-${expense.code}">${expense.expenseType}</span><input id="edit-tipo-${expense.code}" type="text" style="display: none;"></p>
+      </div>
+      <div class="">
+        <button class="confirm-button" id="confirm-button-${expense.code}" data-code="${expense.code}" style="display: none">Confirmar</button>
+        <button class="edit-button" data-code="${expense.code}">
+          <i class="bi bi-pencil textopreto fs-3 mx-1"></i>
+        </button>
+        <button class="delete-button" data-code="${expense.code}">
+          <i class="bi bi-trash text-danger fs-3 mx-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</c:forEach>
+
 		<div class="text-center mt-5">
-			<a href="mostraGastos" class="btn btn-secondary">Visualizar
-				Gastos</a>
+		  <a href="mostraGastos" class="btn btn-secondary">Visualizar Gastos</a>
 		</div>
-	</section>
+	  </section>
 
 	<footer class="w-100 text-center p-3 bg-primary mx-0">
-		<p class="textopreto">Gabriel | Let�cia | Matheus</p>
+		<p class="textopreto">Gabriel | Letícia | Matheus</p>
 	</footer>
 	
 	<script>
-		function deslogar() {
-			//session.destroy();
-			window.location.href = "";
-		}
+		$(document).ready(function() {
+			// Quando um botão de exclusão for clicado
+			$('.delete-button').on('click', function() {
+				// Obtenha o código associado ao botão clicado
+				var expenseCode = $(this).data('code');
+				
+				// Realize a chamada para o endpoint de exclusão
+				$.ajax({
+					url: 'deleteGasto',
+					type: 'DELETE',
+					data: { expenseCode: expenseCode },
+					success: function() {
+						// Atualize a página ou faça qualquer ação desejada após a exclusão
+						location.reload();
+					},
+					error: function() {
+						location.reload();
+					}
+				});
+			});
+		});
 	</script>
+
+<script>
+	$(document).ready(function () {
+	  $('.edit-button').on('click', function () {
+		var expenseCode = $(this).data('code');
+		toggleEdit(expenseCode);
+	  });
+  
+	  function toggleEdit(expenseCode) {
+		var itemSpan = $('#item-' + expenseCode);
+		var valorSpan = $('#valor-' + expenseCode);
+		var tipoSpan = $('#tipo-' + expenseCode);
+		var expenseCodeSpan = $('#id-' + expenseCode);
+  
+		var itemInput = $('#edit-item-' + expenseCode);
+		var valorInput = $('#edit-valor-' + expenseCode);
+		var tipoInput = $('#edit-tipo-' + expenseCode);
+		var expenseCodeInput = $('#confirm-button-' + expenseCode);
+  
+		// Botão de confirmação
+		var confirmButton = $('#confirm-button-' + expenseCode);
+  
+		// Alternar entre a exibição e a edição para cada campo
+		toggleDisplay(itemSpan, itemInput, confirmButton);
+		toggleDisplay(valorSpan, valorInput, confirmButton);
+		toggleDisplay(tipoSpan, tipoInput, confirmButton);
+		toggleDisplay(expenseCodeSpan, expenseCodeInput, confirmButton);
+		confirmButton.show();
+	  }
+  
+	  function toggleDisplay(span, input, confirmButton) {
+		if (span.is(':visible')) {
+		  // Modo de exibição
+		  span.hide();
+		  input.show().val(span.text().trim());
+		} else {
+		  // Modo de edição
+		  span.show().text(input.val());
+		  input.hide();
+		  confirmButton.hide();
+		}
+	  }
+  
+	  // Adicionar evento ao botão de confirmação
+	  $('.confirm-button').on('click', function () {
+		var expenseCode = $(this).data('code');
+		var itemInput = $('#edit-item-' + expenseCode);
+		var valorInput = $('#edit-valor-' + expenseCode);
+		var tipoInput = $('#edit-tipo-' + expenseCode);
+  
+		// Montar objeto com os dados editados
+		var editedData = {
+		  expenseCode: expenseCode,
+		  expenseName: itemInput.val(),
+		  expensePrice: parseFloat(valorInput.val()),
+		  expenseType: tipoInput.val()
+		};
+  
+		// Realizar a chamada PUT para o endpoint atualizarGasto
+		$.ajax({
+		  url: 'atualizarGasto',
+		  type: 'PUT',
+		  contentType: 'application/json',
+		  data: JSON.stringify(editedData),
+		  success: function (response) {
+			// Lógica de sucesso, se necessário
+			location.reload();
+		  },
+		  error: function () {
+			//alert('Erro ao atualizar o registro.');
+		  }
+		});
+  
+		// Após confirmar, alternar de volta para o modo de exibição
+		toggleEdit(expenseCode);
+		var confirmButton = $('#confirm-button-' + expenseCode);
+  
+		confirmButton.hide();
+	  });
+	});
+  </script>
+  
+  
+  <script>
+	function deslogar() {
+		//session.destroy();
+		window.location.href = "";
+	}
+</script>
+  
+  
 
 </body>
 </html>
