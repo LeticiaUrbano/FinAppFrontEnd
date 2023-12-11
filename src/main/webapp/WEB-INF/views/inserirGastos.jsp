@@ -1,49 +1,44 @@
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%
-     //Obtenha o token da sessï¿½o
-   String jwtToken = (String) session.getAttribute("jwtToken");
+//Obtenha o token da sessï¿½o
+String jwtToken = (String) session.getAttribute("jwtToken");
 
-    // Verifique se o token estï¿½ presente
-    if (jwtToken == null || jwtToken.isEmpty()) {
+//Verifique se o token estï¿½ presente
+if (jwtToken == null || jwtToken.isEmpty()) {
 %>
-        <script>
-            // Exiba um pop-up informando ao usuï¿½rio que a sessï¿½o foi encerrada
-            alert("Sua sessï¿½o foi encerrada. Faï¿½a login novamente.");
-            // Redirecione para a pï¿½gina de login
-            window.location.href = "login";
-        </script>
+<script>
+	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
+	alert("Sua sessão foi encerrada. Faça login novamente.");
+	//Redirecione para a pagina de login
+	window.location.href = "login";
+</script>
 <%
-    }
+}
 %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-<title>ControlaAi</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap"
-	rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-
+	<meta charset="ISO-8859-1">
+	<title>ControlaAi</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+		rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap"
+		rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		crossorigin="anonymous">
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="form-header">
-            <h1>Inserir Gastos</h1>
-        </div>
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img
@@ -66,7 +61,7 @@
 
 	<section
 		class="container tela d-flex flex-column pt-3 justify-content-center align-items-center">
-		<form id="insereForm" action="/cadastrarGastos" method="POST"
+		<form id="insereForm" action="/enviarGastos" method="POST"
 			class="w-50">
 			<h2 class="text-center mb-4">Adicionar gastos</h2>
 			<div class="mb-3">
@@ -82,12 +77,12 @@
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="alimentacao"
 					name="categoria" value="alimentacao" required /> <label
-					class="form-check-label" for="alimentacao"> AlimentaÃ§Ã£o </label>
+					class="form-check-label" for="alimentacao"> Alimentação </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="saude"
 					name="categoria" value="saude" required /> <label
-					class="form-check-label" for="saude"> SaÃºde </label>
+					class="form-check-label" for="saude"> Saúde </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="transporte"
@@ -97,7 +92,7 @@
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="educacao"
 					name="categoria" value="educacao" required /> <label
-					class="form-check-label" for="educacao"> EducaÃ§Ã£o </label>
+					class="form-check-label" for="educacao"> Educação </label>
 			</div>
 			<div class="form-check">
 				<input class="form-check-input" type="radio" id="moradia"
@@ -120,90 +115,40 @@
 	</section>
 
 	<footer class="w-100 text-center p-3 bg-primary mx-0">
-		<p class="textopreto">Gabriel | LetÃ­cia | Matheus</p>
+		<p class="textopreto">Gabriel | Letícia | Matheus</p>
 	</footer>
-	<!-- 
-<div class="container">
-    <div class="form-header">
-        <h1>Inserir Gastos</h1>
-    </div>
 
-        <form id="insereForm" action="/enviarGasto" method="POST">
-            <div class="input-group">
-                <div class="input-box">
-                    <label for="item">Item:</label>
-                    <input id="item" type="text" name="item" placeholder="Informe o item" required>
-                </div>
+	<script>
+		function submitForm() {
+			var form = $('#insereForm');
+			var formData = form.serializeArray();
+			var jsonData = {};
 
-                <div class="input-box">
-                    <label for="valor">Valor:</label>
-                    <input id="valor" type="text" name="valor" placeholder="Informe o valor" required>                       
-                </div>
+			$.each(formData, function(_, record) {
+				jsonData[record.name] = record.value;
+			});
 
-                <div class="input-box">
-                    <label>Categoria:</label>
-                    <div class="radio-group">
-                        <input type="radio" id="alimentacao" name="categoria" value="alimentacao" required>
-                        <label for="alimentacao">Alimentaï¿½ï¿½o</label>
-    
-                        <input type="radio" id="saude" name="categoria" value="saude" required>
-                        <label for="saude">Saï¿½de</label>
-    
-                        <input type="radio" id="transporte" name="categoria" value="transporte" required>
-                        <label for="transporte">Transporte</label>
-    
-                        <input type="radio" id="educacao" name="categoria" value="educacao" required>
-                        <label for="educacao">Educaï¿½ï¿½o</label>
-    
-                        <input type="radio" id="moradia" name="categoria" value="moradia" required>
-                        <label for="moradia">Moradia</label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="login-button">
-                <button type="submit" onclick="submitForm()">Cadastrar</button>
-            </div>
-        </form>
+			$
+					.ajax({
+						type : 'POST',
+						url : form.attr('action'),
+						contentType : 'application/json',
+						data : JSON.stringify(jsonData),
+						success : function() {
+							// Mostrar mensagem de sucesso
+							alert('Cadastro concluï¿½do com sucesso! Clique em OK para continuar.');
 
-        <div class="view-expenses">
-            <button>
-                <a href="gerenciarGastos">Visualizar Gastos</a>
-            </button>
-        </div>
-    </div>
-
-    <script>
-	    function submitForm() {
-	        var form = $('#insereForm');
-	        var formData = form.serializeArray();
-	        var jsonData = {};
+							// Redirecionar para a pï¿½gina de login apï¿½s o clique em OK
+							//window.location.href = 'http://localhost:8081/login';
+						},
+						error : function() {
+							// Lï¿½gica de tratamento de erro, se necessï¿½rio...
+						}
+					});
+		}
 	
-	        $.each(formData, function (_, record) {
-	            jsonData[record.name] = record.value;
-	        });
-	
-	        $.ajax({
-	            type: 'POST',
-	            url: form.attr('action'),
-	            contentType: 'application/json',
-	            data: JSON.stringify(jsonData),
-	            success: function () {
-	                // Mostrar mensagem de sucesso
-	                alert('Cadastro concluï¿½do com sucesso! Clique em OK para continuar.');
-	
-	                // Redirecionar para a pï¿½gina de login apï¿½s o clique em OK
-	                //window.location.href = 'http://localhost:8081/login';
-	            },
-	            error: function () {
-	                // Lï¿½gica de tratamento de erro, se necessï¿½rio...
-	            }
-	        });
-	    }
+		
+	</script>
 
-    </script>
-
-</div>
- -->
 </body>
 </html>

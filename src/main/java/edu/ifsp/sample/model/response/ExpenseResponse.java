@@ -4,6 +4,7 @@ public class ExpenseResponse {
 	private String code;
 	private String expenseName;
 	private String expensePrice;
+	private String expenseType;
 	
 	public String getCode() {
 		return code;
@@ -23,6 +24,12 @@ public class ExpenseResponse {
 	public void setExpensePrice(String expensePrice) {
 		this.expensePrice = expensePrice;
 	}
-
+	public String getExpenseType() {
+		return expenseType;
+	}
+	public void setExpenseType(String expenseType) {
+		this.expenseType = expenseType;
+	}
+	
 	
 }

@@ -18,7 +18,7 @@
 		<div class="tela100 d-flex flex-column gap-3 w-25 bg-primary p-4 justify-content-center align-items-center">
 			<img src="../../images/controlaAi.png" class="cadastro__img__texto">
 			<img src="../../images/cofrinho_1.png" class="cadastro__img__porco">
-			<h2 class="fs-1 textobranco">Novo aqui? Junte - se a nos!</h2>
+			<h2 class="fs-1 textobranco">Novo aqui? Junte - se à nós!</h2>
 			<p class="textobranco">Obtenha acesso a nossa plataforma de controle de gastos agora mesmo.</p>
 			<a class="btn btn-light" href="cadastro">Cadastrar-se</a>
 		</div>
