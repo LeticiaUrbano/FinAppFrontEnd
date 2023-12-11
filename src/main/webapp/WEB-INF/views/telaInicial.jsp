@@ -1,25 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- 
 <%
-	
-    // Obtenha o token da sessão
-    String jwtToken = (String) session.getAttribute("jwtToken");
+//Obtenha o token da sessï¿½o
+String jwtToken = (String) session.getAttribute("jwtToken");
 
-    // Verifique se o token está presente
-    if (jwtToken == null || jwtToken.isEmpty()) {
+//Verifique se o token estï¿½ presente
+if (jwtToken == null || jwtToken.isEmpty()) {
 %>
-        <script>
-            // Exiba um pop-up informando ao usuário que a sessão foi encerrada
-            alert("Sua sessão foi encerrada. Faça login novamente.");
-            // Redirecione para a página de login
-            window.location.href = "login";
-        </script>
+<script>
+	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
+	alert("Sua sessão foi encerrada. Faça login novamente.");
+	//Redirecione para a pagina de login
+	window.location.href = "login";
+</script>
 <%
-    }
+}
 %>
- -->
 
 <!DOCTYPE html>
 <html>
@@ -36,29 +33,34 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg bg-primary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link text-light" href="#">Perfil</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="telaInicial"><img
+				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
+				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link text-light" href="telaInicial">Renda</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="inserirGastos">Adicionar gasto</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
+					</li>
+					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
     
     <section class="container d-flex tela flex-column g-3 mb-3">
     	<div class="my-3 text-center">
@@ -102,6 +104,13 @@
     <footer class="w-100 text-center p-3 bg-primary mx-0">
     	<p class="textopreto">Gabriel | Letícia | Matheus</p>
     </footer>
+    
+    <script>
+		function deslogar() {
+			//session.destroy();
+			window.location.href = "";
+		}
+	</script>
 
 </body>
 </html>

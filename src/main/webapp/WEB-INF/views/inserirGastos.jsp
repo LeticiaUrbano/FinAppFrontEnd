@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <%
 //Obtenha o token da sessï¿½o
 String jwtToken = (String) session.getAttribute("jwtToken");
@@ -41,7 +42,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img
+			<a class="navbar-brand" href="telaInicial"><img
 				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
 				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
 			<button class="navbar-toggler" type="button"
@@ -52,18 +53,25 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link text-light" href="#">Perfil</a>
+					<li class="nav-item"><a class="nav-link text-light" href="telaInicial">Renda</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="inserirGastos">Adicionar gasto</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
+					</li>
+					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<section
-		class="container tela d-flex flex-column pt-3 justify-content-center align-items-center">
+	<section class="container tela d-flex flex-column pt-3 align-items-center">
 		<form id="insereForm" action="/enviarGastos" method="POST"
 			class="w-50">
-			<h2 class="text-center mb-4">Adicionar gastos</h2>
+			<h2 class="text-center mb-4 fs-1">Adicionar gastos</h2>
 			<div class="mb-3">
 				<label for="item" class="form-label">Item</label> <input id="item"
 					type="text" name="item" class="form-control"
@@ -146,8 +154,12 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 						}
 					});
 		}
-	
-		
+	</script>
+	<script>
+		function deslogar() {
+			//session.destroy();
+			window.location.href = "";
+		}
 	</script>
 
 </body>

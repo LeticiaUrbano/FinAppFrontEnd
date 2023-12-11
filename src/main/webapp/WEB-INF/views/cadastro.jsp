@@ -49,39 +49,6 @@
 		</div>
 	</div>
 
-
-<!-- 
-
-                <form id="registrationForm" action="/create-new-user" method="POST">
-                    <div class="input-group">
-                        <div class="input-box">
-                            <label for="nomeUser">Nome</label>
-                            <input id="nomeUser" type="text" name="nome" placeholder="Digite seu nome" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="sobrenomeUser">Sobre Nome</label>
-                            <input id="sobrenomeUser" type="text" name="sobrenome" placeholder="Digite seu sobre nome" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="emailUser">E-mail</label>
-                            <input id="emailUser" type="email" name="email" placeholder="Digite seu e-mail" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="senhaUser">Senha</label>
-                            <input id="senhaUser" type="password" name="senha" placeholder="Digite sua senha" required>
-                        </div>
-                        <div class="input-box">
-                            <label for="confirmSenhaUser">Confirmar Senha</label>
-                            <input id="confirmSenhaUser" type="password" name="confirmSenhaUser" placeholder="Digite novamente sua senha" required>
-                        </div>
-                    </div>
-
-                    <div class="login-button">
-                        <button type="button" onclick="submitForm()">Cadastrar</button>
-                    </div>
-                </form>
-     -->
-
     <script>
 	    function submitForm() {
 	        var form = $('#registrationForm');

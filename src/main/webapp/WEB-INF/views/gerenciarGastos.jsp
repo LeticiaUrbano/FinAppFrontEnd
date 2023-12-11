@@ -2,6 +2,23 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%
+//Obtenha o token da sessï¿½o
+String jwtToken = (String) session.getAttribute("jwtToken");
+
+//Verifique se o token estï¿½ presente
+if (jwtToken == null || jwtToken.isEmpty()) {
+%>
+<script>
+	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
+	alert("Sua sessão foi encerrada. Faça login novamente.");
+	//Redirecione para a pagina de login
+	window.location.href = "login";
+</script>
+<%
+}
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +44,7 @@
 
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img
+			<a class="navbar-brand" href="telaInicial"><img
 				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
 				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
 			<button class="navbar-toggler" type="button"
@@ -38,7 +55,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link text-light" href="#">Perfil</a>
+					<li class="nav-item"><a class="nav-link text-light" href="telaInicial">Renda</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="inserirGastos">Adicionar gasto</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
+					</li>
+					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
 				</ul>
 			</div>
@@ -53,7 +78,7 @@
 					<div>
 						<p class="textopreto">Código: ${expense.code}</p>
 						<p class="textopreto">Item: ${expense.expenseName} - Valor:
-							${expense.expensePrice} - Tipo de Gasto: </p>
+							${expense.expensePrice} - Tipo de Gasto: ${expense.expenseName}</p>
 					</div>
 					<div class="">
 						<i class="bi bi-pencil textopreto fs-3 mx-1"></i> <i
@@ -71,39 +96,13 @@
 	<footer class="w-100 text-center p-3 bg-primary mx-0">
 		<p class="textopreto">Gabriel | Letícia | Matheus</p>
 	</footer>
+	
+	<script>
+		function deslogar() {
+			//session.destroy();
+			window.location.href = "";
+		}
+	</script>
 
-
-	<!-- 
-	<div class=e8_379>
-		<div class=e8_380>
-			<div class=e8_382>
-				<div class="ei8_382_501_22"></div>
-				<div class="ei8_382_501_399"></div>
-			</div>
-			<div class=e11_525>
-				<div class="e8_381"></div>
-				<div class="e8_384"></div>
-				<div class="e8_385"></div>
-			</div>
-		</div>
-
-		<div class=e16_567>
-
-			<c:forEach var="expense" items="${expenses}">
-				<span class="e16_604">Codigo: ${expense.code}</span>
-				<br>
-				<span class="e16_603">Item: ${expense.expenseName} Valor:
-					${expense.expensePrice} - Tipo de Gasto: ${expense.type}</span>
-			</c:forEach>
-
-		</div>
-	</div>
-	<div class=e16_590>
-		<span class="ei16_590_8_469"><button>
-				<a href="mostraGastos">Visualizar Gastos</a>
-			</button></span>
-	</div>
-	<div class="e16_591"></div>
-	-->
 </body>
 </html>

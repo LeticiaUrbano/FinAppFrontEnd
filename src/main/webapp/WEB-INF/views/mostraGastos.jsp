@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	
-	
-	
+<%
+//Obtenha o token da sessï¿½o
+String jwtToken = (String) session.getAttribute("jwtToken");
+
+//Verifique se o token estï¿½ presente
+if (jwtToken == null || jwtToken.isEmpty()) {
+%>
+<script>
+	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
+	alert("Sua sessão foi encerrada. Faça login novamente.");
+	//Redirecione para a pagina de login
+	window.location.href = "login";
+</script>
+<%
+}
+%>
 	
 <!DOCTYPE html>
 <html>
@@ -30,7 +44,7 @@
 
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img
+			<a class="navbar-brand" href="telaInicial"><img
 				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
 				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
 			<button class="navbar-toggler" type="button"
@@ -41,16 +55,24 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link text-light" href="#">Perfil</a>
+					<li class="nav-item"><a class="nav-link text-light" href="telaInicial">Renda</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="inserirGastos">Adicionar gasto</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
+					</li>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
+					</li>
+					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<section class="container w-100 tela100 d-flex justify-content-center">
-		<div class="d-flex flex-column justify-content-center align-items-center w-75">
-			<h2>Despesas mensais</h2>
+	<section class="container w-100 tela d-flex justify-content-center">
+		<div class="d-flex flex-column align-items-center w-75">
+			<h2 class="fs-1 mb-2">Despesas mensais</h2>
 			<h3 class="textopreto">Suas despesas então assim hoje</h3>
 			<div class="d-flex flex-column gap-3 w-100">
 				<div class="card w-100">
@@ -79,27 +101,13 @@
 	<footer class="w-100 text-center p-3 bg-primary mx-0">
 		<p class="textopreto">Gabriel | Letícia | Matheus</p>
 	</footer>
-	<!-- 
-<div class=e8_471>
-  <div class=e8_472>
-    <div class=e8_474>
-      <div class="ei8_474_501_22"></div>
-      <div class="ei8_474_501_399"></div>
-    </div>
-    <div class=e11_527>
-      <div class="e8_476"></div>
-      <div class="e8_477"></div>
-      <div class="e8_473"></div>
-    </div>
-  </div>
-  <div class=e8_478>
-    <div class="e8_509"></div>
-    <div class=e8_510><span  class="e11_560">Despesas mensais</span></div>
-    <div class="e11_558"></div>
-    <div class="e16_562"></div>
-  </div>
-</div>
--->
+	
+	<script>
+		function deslogar() {
+			//session.destroy();
+			window.location.href = "";
+		}
+	</script>
 
 </body>
 </html>
