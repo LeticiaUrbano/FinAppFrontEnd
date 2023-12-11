@@ -6,7 +6,6 @@ public class UserRequest {
     private String email;
     private String senha;
 
-    // Construtores, getters e setters
 
     public UserRequest() {
     }

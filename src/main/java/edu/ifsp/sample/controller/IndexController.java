@@ -11,27 +11,9 @@ public class IndexController {
         return "index";
     }
     
-    
-
-    
-    
     @GetMapping("/telaInicial")
     public String telaInicial() {
         return "telaInicial";
     }     
     
-    @GetMapping("/inserirGastos")
-    public String inserirGastos() {
-        return "inserirGastos";
-    }     
-    
-    @GetMapping("/mostraGastos")
-    public String mostraGastos() {
-        return "mostraGastos";
-    }
-    
-    @GetMapping("/gerenciarGastos")
-    public String gerenciarGastos() {
-        return "gerenciarGastos";
-    }
 }

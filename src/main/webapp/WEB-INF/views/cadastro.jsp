@@ -70,32 +70,32 @@
     </div>
 
     <script>
-    function submitForm() {
-        var form = $('#registrationForm');
-        var formData = form.serializeArray();
-        var jsonData = {};
-
-        $.each(formData, function (_, record) {
-            jsonData[record.name] = record.value;
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            contentType: 'application/json',
-            data: JSON.stringify(jsonData),
-            success: function () {
-                // Mostrar mensagem de sucesso
-                alert('Cadastro concluído com sucesso! Clique em OK para continuar.');
-
-                // Redirecionar para a página de login após o clique em OK
-                window.location.href = 'http://localhost:8081/login';
-            },
-            error: function () {
-                // Lógica de tratamento de erro, se necessário...
-            }
-        });
-    }
+	    function submitForm() {
+	        var form = $('#registrationForm');
+	        var formData = form.serializeArray();
+	        var jsonData = {};
+	
+	        $.each(formData, function (_, record) {
+	            jsonData[record.name] = record.value;
+	        });
+	
+	        $.ajax({
+	            type: 'POST',
+	            url: form.attr('action'),
+	            contentType: 'application/json',
+	            data: JSON.stringify(jsonData),
+	            success: function () {
+	                // Mostrar mensagem de sucesso
+	                alert('Cadastro concluído com sucesso! Clique em OK para continuar.');
+	
+	                // Redirecionar para a página de login após o clique em OK
+	                window.location.href = 'http://localhost:8081/login';
+	            },
+	            error: function () {
+	                // Lógica de tratamento de erro, se necessário...
+	            }
+	        });
+	    }
 
     </script>
 

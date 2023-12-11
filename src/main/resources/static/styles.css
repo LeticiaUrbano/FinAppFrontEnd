@@ -1994,18 +1994,23 @@
 	left:11px;
 	top:22px;
 }
-.e16_604 { 
-	color:rgba(0, 0, 0, 1);
-	width:1257px;
-	height:32px;
-	position:absolute;
-	left:0px;
-	top:5px;
-	font-family:Inter;
-	text-align:left;
-	font-size:32px;
-	letter-spacing:0;
-	line-height:px;
+.e16_604,
+.e16_603 {
+    color: rgba(0, 0, 0, 1);
+    width: 1257px;
+    height: 32px;
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    font-family: Inter;
+    text-align: left;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: px;
+}
+
+.e16_603 {
+    top: 37px; /* Ajuste a posição conforme necessário */
 }
 .e16_609 { 
 	width:30px;

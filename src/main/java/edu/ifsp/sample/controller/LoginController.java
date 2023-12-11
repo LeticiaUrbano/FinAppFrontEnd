@@ -27,8 +27,11 @@ public class LoginController {
 	    if (token == null) {
 	        return "login";
 	    } else {
-	        // Armazena o token na sessão
+
+	    	String userCode = apiService.getUserCode(userRequest.getEmail(), token);
+	    	session.setAttribute("userCode", userCode);
 	        session.setAttribute("jwtToken", token);
+	        session.setAttribute("userEmail", userRequest.getEmail());
 	        return "redirect:/telaInicial";
 	    }
 	}
