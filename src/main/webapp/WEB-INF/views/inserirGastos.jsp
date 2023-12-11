@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%
      //Obtenha o token da sess�o
@@ -32,82 +33,122 @@
             padding: 0;
             background-color: #f8f8f8;
         }
+=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ControlaAi</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap"
+	rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+>>>>>>> Stashed changes
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-box {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 10px; /* Added border-radius for round corners */
-        }
-
-        .radio-group {
-            margin-top: 10px;
-        }
-
-        .radio-group label {
-            margin-right: 15px;
-        }
-
-        .login-button button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .login-button button:hover {
-            background-color: #45a049;
-        }
-
-        .view-expenses button {
-            background-color: #008CBA;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .view-expenses button:hover {
-            background-color: #0077A6;
-        }
-    </style>
 </head>
 <body>
 
+<<<<<<< Updated upstream
     <div class="container">
         <div class="form-header">
             <h1>Inserir Gastos</h1>
         </div>
+=======
+	<nav class="navbar navbar-expand-lg bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><img
+				src="../../images/cofrinho_1.png" class="navbar__logo__porco"><img
+				src="../../images/controlaAi.png" class="navbar__logo__texto"></a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link text-light" href="#">Perfil</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section
+		class="container tela d-flex flex-column pt-3 justify-content-center align-items-center">
+		<form id="insereForm" action="/cadastrarGastos" method="POST"
+			class="w-50">
+			<h2 class="text-center mb-4">Adicionar gastos</h2>
+			<div class="mb-3">
+				<label for="item" class="form-label">Item</label> <input id="item"
+					type="text" name="item" class="form-control"
+					placeholder="Informe o item" required>
+			</div>
+			<div class="mb-3">
+				<label for="valor" class="form-label">Valor</label> <input
+					id="valor" type="text" name="valor" class="form-control"
+					placeholder="Informe o item" required>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="alimentacao"
+					name="categoria" value="alimentacao" required /> <label
+					class="form-check-label" for="alimentacao"> Alimentação </label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="saude"
+					name="categoria" value="saude" required /> <label
+					class="form-check-label" for="saude"> Saúde </label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="transporte"
+					name="categoria" value="transporte" required /> <label
+					class="form-check-label" for="transporte"> Transporte </label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="educacao"
+					name="categoria" value="educacao" required /> <label
+					class="form-check-label" for="educacao"> Educação </label>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" id="moradia"
+					name="categoria" value="moradia" required /> <label
+					class="form-check-label" for="moradia"> Moradia </label>
+			</div>
+			<div class="text-center d-flex flex-row mt-3 justify-content-around">
+				<div class="">
+					<button type="button" onclick="submitForm()"
+						class="btn btn-primary">Cadastrar</button>
+				</div>
+				<div class="">
+					<a href="gerenciarGastos" class="btn btn-secondary">Visualizar
+						Gastos</a>
+				</div>
+			</div>
+		</form>
+
+
+	</section>
+
+	<footer class="w-100 text-center p-3 bg-primary mx-0">
+		<p class="textopreto">Gabriel | Letícia | Matheus</p>
+	</footer>
+	<!-- 
+<div class="container">
+    <div class="form-header">
+        <h1>Inserir Gastos</h1>
+    </div>
+>>>>>>> Stashed changes
 
         <form id="insereForm" action="/enviarGasto" method="POST">
             <div class="input-group">
@@ -153,6 +194,7 @@
             </button>
         </div>
     </div>
+<<<<<<< Updated upstream
 
     <script>
 	    function submitForm() {
@@ -184,5 +226,9 @@
 
     </script>
 
+=======
+</div>
+ -->
+>>>>>>> Stashed changes
 </body>
 </html>

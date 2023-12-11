@@ -50,5 +50,12 @@ public class ExpenseController {
     	model.addAttribute("expenses", expenses);
         return "gerenciarGastos";
     }
+    
+    @GetMapping("/gerenciarGastos2")
+    public String gerenciarGastos2(Model model) {
+    	List<ExpenseResponse> expenses = new List<ExpenseResponse>();
+    	model.addAttribute("expenses", expenses);
+        return "gerenciarGastos";
+    }
 
 }

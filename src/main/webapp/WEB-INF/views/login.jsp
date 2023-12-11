@@ -5,12 +5,39 @@
     <head>
         <meta charset="ISO-8859-1">
         <title>ControlaAi</title>
-        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
+    
+    <div class="container w-100 tela100 d-flex mx-0 p-0 justify-content-between">
+		<div class="tela100 d-flex flex-column gap-3 w-25 bg-primary p-4 justify-content-center align-items-center">
+			<img src="../../images/controlaAi.png" class="cadastro__img__texto">
+			<img src="../../images/cofrinho_1.png" class="cadastro__img__porco">
+			<h2 class="fs-1 textobranco">Novo aqui? Junte - se a nos!</h2>
+			<p class="textobranco">Obtenha acesso a nossa plataforma de controle de gastos agora mesmo.</p>
+			<a class="btn btn-light" href="cadastro">Cadastrar-se</a>
+		</div>
+		<div class="tela100 w-50 justify-content-center align-items-center text-center d-flex flex-column">
+			<h2 class="fs-1">Fazer login</h2>
+			<form id="loginForm" action="/logins" method="POST" class="d-flex flex-column justify-content-center p-3 ml-2 w-50 text-start">
+				<div class="mb-3">
+				  <label for="email" class="form-label textopreto">E-mail</label>
+				  <input type="email" class="form-control" name="email" placeholder="Digite seu e-mail" id="email" required>
+				</div>
+				<div class="mb-3">
+				  <label for="senha" class="form-label textopreto">Senha</label>
+				  <input type="password" class="form-control" name="senha" placeholder="Digite sua senha" id="senha" required>
+				</div>
+                <button type="button" onclick="submitForm()" class="btn btn-primary">Entrar</button> 
+			</form>
+		</div>
+	</div>
+    <!--  
         <div class=e1_2>
             <div class="e6_254"></div>
             <div class="e5_230"></div>
@@ -58,6 +85,7 @@
                 </div>
             </div>
         </div>
+        -->
         
        <script>
        function submitForm() {

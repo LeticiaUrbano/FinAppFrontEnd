@@ -1,3 +1,64 @@
+* {
+	padding: 0;
+	margin: 0;
+	color: #4499FF;
+}
+
+.tela {
+	height: 90vh;
+}
+
+.tela100 {
+	height: 100vh;
+}
+
+.navbar__color {
+	background-color: #4499FF;
+}
+
+.navbar__logo__texto {
+	width: 150px;
+}
+
+.navbar__logo__porco {
+	width: 50px;
+}
+
+.main__img {
+	width: 40%;
+}
+
+.inicial__img {
+	width: 20%;
+}
+
+.cadastro__img__porco {
+	width: 80%;
+}
+
+.cadastro__img__texto {
+	width: 100%;
+}
+
+.textobranco {
+	color: white;
+}
+
+.textopreto {
+	color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .e1_42 { 
 	overflow:hidden;
 }
