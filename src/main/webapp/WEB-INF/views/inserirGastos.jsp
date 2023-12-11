@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%
      //Obtenha o token da sess�o
@@ -20,26 +20,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>ControlaAi</title>
-    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <style>
-        body {
-            font-family: 'Work Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-=======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <title>ControlaAi</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -54,17 +35,15 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
->>>>>>> Stashed changes
 
 </head>
+
 <body>
 
-<<<<<<< Updated upstream
     <div class="container">
         <div class="form-header">
             <h1>Inserir Gastos</h1>
         </div>
-=======
 	<nav class="navbar navbar-expand-lg bg-primary">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img
@@ -148,7 +127,6 @@
     <div class="form-header">
         <h1>Inserir Gastos</h1>
     </div>
->>>>>>> Stashed changes
 
         <form id="insereForm" action="/enviarGasto" method="POST">
             <div class="input-group">
@@ -194,7 +172,6 @@
             </button>
         </div>
     </div>
-<<<<<<< Updated upstream
 
     <script>
 	    function submitForm() {
@@ -226,9 +203,7 @@
 
     </script>
 
-=======
 </div>
  -->
->>>>>>> Stashed changes
 </body>
 </html>
