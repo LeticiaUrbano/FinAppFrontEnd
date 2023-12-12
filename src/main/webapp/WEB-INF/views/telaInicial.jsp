@@ -106,10 +106,20 @@ if (jwtToken == null || jwtToken.isEmpty()) {
     </footer>
     
     <script>
-		function deslogar() {
-			//session.destroy();
-			window.location.href = "";
-		}
+    function deslogar() {
+        $.ajax({
+            type: "GET",
+            url: "logout",
+            success: function() {
+                // Redirecione para a página de login após a invalidação da sessão
+                window.location.href = "login";
+            },
+            error: function() {
+                // Exiba uma mensagem de erro se necessário
+                alert("Erro ao realizar logout");
+            }
+        });
+    }
 	</script>
 
 </body>

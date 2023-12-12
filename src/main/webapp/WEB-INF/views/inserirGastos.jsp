@@ -9,7 +9,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 %>
 <script>
 	//Exiba um pop-up informando ao usuario que a sessao foi encerrada
-	alert("Sua sessï¿½o foi encerrada. Faï¿½a login novamente.");
+	alert("Sua session foi encerrada. Faça login novamente.");
 	//Redirecione para a pagina de login
 	window.location.href = "login";
 </script>
@@ -58,7 +58,7 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 					</li>
 					<li class="nav-item"><a class="nav-link text-light" href="gerenciarGastos">Gastos</a>
 					</li>
-					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatï¿½rio</a>
+					<li class="nav-item"><a class="nav-link text-light" href="mostraGastos">Relatório</a>
 					</li>
 					<li class="nav-item"><button class="nav-link text-light" onclick="deslogar()">Sair</button>
 					</li>
@@ -150,10 +150,20 @@ if (jwtToken == null || jwtToken.isEmpty()) {
 		}
 	</script>
 	<script>
-		function deslogar() {
-			//session.destroy();
-			window.location.href = "";
-		}
-	</script>
+    function deslogar() {
+        $.ajax({
+            type: "GET",
+            url: "logout",
+            success: function() {
+                // Redirecione para a página de login após a invalidação da sessão
+                window.location.href = "login";
+            },
+            error: function() {
+                // Exiba uma mensagem de erro se necessário
+                alert("Erro ao realizar logout");
+            }
+        });
+    }
+</script>
 </body>
 </html>
